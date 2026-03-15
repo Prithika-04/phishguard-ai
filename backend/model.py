@@ -1,5 +1,12 @@
+import joblib
+
+model = joblib.load("model.pkl")
+
 def predict_url(url):
-    if "login" in url or "verify" in url or "bank" in url:
+    length = len(url)
+    prediction = model.predict([[length]])
+    
+    if prediction[0] == 1:
         return "Phishing"
     else:
         return "Safe"
